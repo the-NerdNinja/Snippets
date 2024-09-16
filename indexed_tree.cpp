@@ -1,11 +1,11 @@
 
 template <class T> struct indexed_tree{
-  ll ss;
+  int ss;
   vector<T> bit;
- 
-  indexed_tree(ll n): ss(n), bit(n+1, 0) {}
- 
-  void update(ll i, ll delta){
+
+  indexed_tree(int n): ss(n), bit(n+1, 0) {}
+
+  void update(int i, ll delta){
     for(++i; i<=ss; i+=i&-i) bit[i]+=delta;
   }
   T query(int i){
