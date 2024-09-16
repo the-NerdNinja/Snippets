@@ -5,7 +5,7 @@ template <class T> struct indexed_tree{
 
   indexed_tree(int n): ss(n), bit(n+1, 0) {}
 
-  void update(int i, ll delta){
+  void update(int i, T delta){
     for(++i; i<=ss; i+=i&-i) bit[i]+=delta;
   }
   T query(int i){
