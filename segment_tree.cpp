@@ -5,19 +5,20 @@ template <class T, class L> struct segment_tree{
   vector<L> lazy; L lazyidn;
 
   segment_tree(int n, T tid, L lid):
-    ss(n), tree(4*n, tid), lazy(4*n, lid),
-    treeidn(tid), lazyidn(lid) {}
+    ss(n),
+    tree(4*n, tid), treeidn(tid),
+    lazy(4*n, lid), lazyidn(lid) {}
 
   T merge(const T &a, const T &b){
-
+    return min(a, b);
   }
 
   void lazyapply(T &to, int l, int r, const L &fr){
-
+    if(fr!=-1) to=fr;
   }
 
   void lazymerge(L &to, const L &fr){
-
+    if(fr!=-1) to=fr;
   }
 
   void build(int id, int l, int r, const vector<T> &v){
@@ -81,3 +82,4 @@ template <class T, class L> struct segment_tree{
   }
   unsigned long int size(){return ss;}
 };
+
