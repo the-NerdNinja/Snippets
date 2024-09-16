@@ -10,15 +10,19 @@ template <class T, class L> struct segment_tree{
     lazy(4*n, lid), lazyidn(lid) {}
 
   T merge(const T &a, const T &b){
-    
+    return max(a, b);
   }
 
   void lazyapply(T &to, int l, int r, const L &fr){
-    
+    if(fr!=-1) to=fr;
   }
 
   void lazymerge(L &to, const L &fr){
-    
+    if(fr!=-1) to=fr;
+  }
+
+  bool discriminant(const T &tl, const T &x){
+    return tl<x;
   }
 
   void build(int id, int l, int r, const vector<T> &v){
@@ -70,6 +74,14 @@ template <class T, class L> struct segment_tree{
     update(id*2+2, m+1, r, ul, ur, uv);
     tree[id] = merge(tree[id*2+1], tree[id*2+2]);
   }
+  int walk(int id, int l, int r, const T &x){
+    if(l==r){
+      return l;
+    }
+    int m=l+(r-l)/2;
+    if(discriminant(tree[id*2+1], x)) return walk(id*2+2, m+1, r, x);
+    return walk(id*2+1, l, m, x);
+  }
 
   void build(const vector<T> &v){
     build(0, 0, ss-1, v);
@@ -80,6 +92,9 @@ template <class T, class L> struct segment_tree{
   void update(int ul, int ur, const L &uv){
     update(0, 0, ss-1, ul, ur, uv);
   }
+  int walk(const T &x){ //first F
+    if(discriminant(tree[0], x)) return ss;
+    return walk(0, 0, ss-1, x);
+  }
   unsigned long int size(){return ss;}
 };
-
