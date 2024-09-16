@@ -10,15 +10,15 @@ template <class T, class L> struct segment_tree{
     lazy(4*n, lid), lazyidn(lid) {}
 
   T merge(const T &a, const T &b){
-    return min(a, b);
+    
   }
 
   void lazyapply(T &to, int l, int r, const L &fr){
-    if(fr!=-1) to=fr;
+    
   }
 
   void lazymerge(L &to, const L &fr){
-    if(fr!=-1) to=fr;
+    
   }
 
   void build(int id, int l, int r, const vector<T> &v){
