@@ -7,7 +7,7 @@ using namespace std;
 using namespace __gnu_pbds;
 using ll = long long;
 using vi = vector<ll>;
-using pii = pair<ll, ll>;
+using pi = pair<ll, ll>;
 using grid = vector<vi>;
 
 template<class T>
